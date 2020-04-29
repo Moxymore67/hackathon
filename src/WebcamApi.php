@@ -73,7 +73,7 @@ class WebcamApi
         return $array;
     }
 
-    public function setUrl(): ?string
+    public function getUrl(): ?string
     {
         $endpoint = self::BASE_URL;
         $endpoint .= (!empty($this->getCountry())) ? $this->getCountry() : '';
@@ -84,7 +84,6 @@ class WebcamApi
         return $endpoint;
     }
 
-/*
     public function callAPI( string $endpoint): ?array
     {
         $curl = new \Curl\Curl();
@@ -101,5 +100,5 @@ class WebcamApi
             echo "<p style='color:green;font-weight: bold;'>request successful : " . $curl->http_status_code . " at ".$endpoint."</p>";
         }
         return json_decode($curl->response, 1);
-    }*/
+    }
 }
