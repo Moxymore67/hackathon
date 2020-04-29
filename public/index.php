@@ -66,3 +66,8 @@ $webcams = $result['webcams'];
  * Mandatory : needed to close curl request (server side)
  */
 $curl->close();
+
+require_once './src/layout/_head.php';
+require_once './src/layout/_navbar.php';
+
+require_once './src/layout/_footer.php';
