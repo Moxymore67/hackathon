@@ -9,16 +9,17 @@
                             <option>-- Select a country --</option>
                             <?php
                             foreach ($countries as $key => $country) { ?>
-                                <option><?= $country; ?></option>
+                                <option value="<?= $key; ?>"><?= $country; ?></option>
                             <?php
                             }
                             ?>
                         </select>
                     </div>
+                    <button type="submit" value="guessed" class="btn btn-primary">Send</button>
                 </form>
             </div>
             <div>
-                <a href="minigame.php" class="btn btn-primary">Try another one</a>
+                <a href="minigame.php" class="btn btn-warning">Try another one</a>
             </div>
         </div>
 

@@ -3,8 +3,6 @@
 
 namespace App;
 
-use App\WebcamApi;
-
 class RandomCountry extends WebcamApi
 {
     public function __construct()
