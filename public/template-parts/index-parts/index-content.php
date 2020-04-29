@@ -1,3 +1,6 @@
+<?php
+
+?>
 <body>
     <div class="container">
         <div class="row">
@@ -9,5 +12,9 @@
             </div>
         </div>
     </div>
+<?php
+//var_dump($countries);
+//var_dump($categories);
+?>
 </body>
 </html>

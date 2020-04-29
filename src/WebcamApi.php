@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-class webcamApi
+class WebcamApi
 {
     const BASE_URL = 'https://api.windy.com/api/webcams/v2/list?';
     const API_KEY = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
