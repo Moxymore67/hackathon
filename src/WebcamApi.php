@@ -59,7 +59,7 @@ class WebcamApi
         $curl = new \Curl\Curl();
         $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
         $curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
-        $curl->setOpt(CURLOPT_TIMEOUT_MS, 1500);
+        $curl->setOpt(CURLOPT_TIMEOUT, 10);
         $curl->get(self::BASE_URL . $endpoint);
 
         if ($curl->error)
