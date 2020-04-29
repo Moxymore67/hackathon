@@ -3,6 +3,7 @@ $webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
 $categories = $webcam->getCategories();
 
+
 ?>
 
 <form method="post" >
@@ -26,5 +27,4 @@ $categories = $webcam->getCategories();
             </select> </label>
          </div>
     <input type="submit" value="Send">
-
 </form>
