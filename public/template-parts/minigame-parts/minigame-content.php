@@ -6,10 +6,10 @@
                 <form action="./../minigame.php" method="post">
                     <div class="form-group">
                         <select name="guess" id="guess" class="form-control">
-                            <option>-- Select a country --</option>
+                            <option value="none">-- Select a country --</option>
                             <?php
                             foreach ($countries as $key => $country) { ?>
-                                <option value="<?= $key; ?>"><?= $country; ?></option>
+                                <option value="<?= $key; ?>"><?= $country; ?> - <?= $key; ?></option>
                             <?php
                             }
                             ?>
