@@ -3,6 +3,8 @@ $webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
 $categories = $webcam->getCategories();
 $url = new \App\WebcamApi();
+sort($categories);
+asort($countries);
 ?>
 <form method="post" >
         <div class="form-group ">
