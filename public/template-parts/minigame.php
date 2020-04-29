@@ -4,18 +4,27 @@ session_start();
 
 $webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
+$categories = $webcam->getCategories();
 asort($countries);
 
 // MINI GAME LOGIC
 // On page first visit or reload
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // new RandomCountry object
-    $countryGenerator = new \App\RandomCountry();
+    // new MiniGame object
+    $miniGame = new \App\MiniGame();
+
+    $miniGame->setCategory('beach');
+
     // pick a random country
-    $randCountry = $countryGenerator->getRandomCountry();
+    $randCountry = $miniGame->getRandomCountry();
+
+    $miniGame->setCountry($randCountry);
+
+    $url = $miniGame->getUrl();
+
     // Storing it into SESSION
     $_SESSION['country'] = $randCountry;
-    var_dump($randCountry);
+    var_dump($randCountry, $url);
 // On guessing a country
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // checking not a blank guess
@@ -35,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         var_dump($message);
     }
 }
+
 include './template-parts/header.php';
-include './template-parts/minigame-parts/minigame-content.php';
+include './template-parts/minigame-parts/minigame-start.php';
 include './template-parts/footer.php';

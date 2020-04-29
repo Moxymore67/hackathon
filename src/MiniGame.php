@@ -3,7 +3,7 @@
 
 namespace App;
 
-class RandomCountry extends WebcamApi
+class MiniGame extends WebcamApi
 {
     public function __construct()
     {
