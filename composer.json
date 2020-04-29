@@ -5,10 +5,13 @@
     {
         "psr-4":
         {
-            "App\\": "src"
+            "App\\": "src",
+            "Webcam\\": "public/class/"
         }
     },
     "require": {
-
+        "curl/curl": "^2.3",
+        "ext-json": "^7.4",
+        "ext-curl": "^7.4"
     }
 }
