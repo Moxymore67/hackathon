@@ -1,12 +1,18 @@
 <?php
-require_once './template-parts/travel.php'; ?>
+$webcam = new \App\WebcamApi();
+$countries = $webcam->getCountries();
+$categories = $webcam->getCategories();
+$url = new \App\WebcamApi();
+sort($categories);
+asort($countries);
+?>
 <form method="post" >
         <div class="form-group ">
             <label for="exampleFormControlSelect2">Select a category
              <select name="category"  class="form-control" id="">
              <option>Select your category </option>
             <?php foreach($categories as $key => $val ){ ?>
-            <option value="<?= $key ?>"><?= $key ?></option>
+            <option value="<?= $val ?>"><?= $val ?></option>
             <?php } ?>
             </select></label>
          </div>
@@ -22,3 +28,4 @@ require_once './template-parts/travel.php'; ?>
          </div>
     <input type="submit" value="Send">
 </form>
+
