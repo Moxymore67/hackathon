@@ -1,11 +1,5 @@
 <?php
-$webcam = new \App\WebcamApi();
-$countries = $webcam->getCountries();
-$categories = $webcam->getCategories();
-
-
-?>
-
+require_once './template-parts/travel.php'; ?>
 <form method="post" >
         <div class="form-group ">
             <label for="exampleFormControlSelect2">Select a category
