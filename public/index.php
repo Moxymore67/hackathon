@@ -9,12 +9,16 @@
  *
  * ----------------------------
  *
- * $obj = new App\WebcamApi();
- * $obj->setCountry('ta valeur');
- * $obj->setCategory('ta valeur);
- * $obj->getUrl();
+ * $data = new App\WebcamApi();
+ * $data = $data->sexyData(array(
+ *   'category' => 'beach',
+ *   'country' => 'FR',
+ *   'limit' => 1,
+ *   'order_by' => 'popularity',
+ * ));
  */
 
 
 require_once '../vendor/autoload.php';
+
 require_once 'template-parts/home.php';
