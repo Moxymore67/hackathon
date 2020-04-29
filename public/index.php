@@ -17,5 +17,3 @@ $categories = $webcam->getCategories();
 
 ?>
 
-
-
