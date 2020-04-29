@@ -1,0 +1,14 @@
+{
+    "name": "thinktwicecodeonce/hackathon",
+    "description": "Hackathon april 2020",
+    "autoload":
+    {
+        "psr-4":
+        {
+            "App\\": "src"
+        }
+    },
+    "require": {
+
+    }
+}
