@@ -8,8 +8,6 @@ class WebcamApi
 
     public function __construct(){  }
 
-    public function add
-
     public function getCategories(): ?array
     {
         $endpoint = 'show=categories&key=' . self::API_KEY;
