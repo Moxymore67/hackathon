@@ -10,10 +10,8 @@
 require '../vendor/autoload.php';
 
 
-$webcam = new \App\webcamApi();
+$webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
 $categories = $webcam->getCategories();
 
-
-?>
-
+include './template-parts/home.php';

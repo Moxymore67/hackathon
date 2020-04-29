@@ -2,10 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                gjoifdsgiodfjig
-            </div>
-            <div class="col-6">
-                gfjldfjgdf
+                <h1>Travel From Your Couch</h1>
             </div>
         </div>
     </div>
