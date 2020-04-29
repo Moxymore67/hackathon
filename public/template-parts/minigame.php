@@ -4,6 +4,7 @@ session_start();
 
 $webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
+asort($countries);
 
 // MINI GAME LOGIC
 // On page first visit or reload
