@@ -22,6 +22,5 @@
                 <a href="minigame.php" class="btn btn-warning">Try another one</a>
             </div>
         </div>
-
     </div>
 </div>
