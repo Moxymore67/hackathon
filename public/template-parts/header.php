@@ -24,7 +24,7 @@
                 <a class="nav-link" href="travel.php">Travel</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mini-game.php">Mini-Game</a>
+                <a class="nav-link" href="minigame.php">Mini-Game</a>
             </li>
         </ul>
     </div>
