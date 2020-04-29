@@ -1,18 +1,53 @@
 <?php
 
 namespace App;
+
+
 class WebcamApi
 {
-    const BASE_URL = 'https://api.windy.com/api/webcams/v2/list?';
+    const BASE_URL = 'https://api.windy.com/api/webcams/v2/list';
     const API_KEY = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
+    private string $country;
+    private string $category;
+    private string $orderBy = 'popularity';
+    private int $limit = 50;
+    private string $showCam = '?show=webcams:player,location&key=';
 
     public function __construct(){  }
 
-    public function add
+    public function getLimit()
+    {
+        return '/limit=' . $this->limit;
+    }
+
+    public function getOrderBy()
+    {
+        return "/orderby=" . $this->orderBy;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+
+    public function getCategory(): ?string
+    {
+        return "/category=" . $this->category;
+    }
+
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    public function getCountry(): ?string
+    {
+        return "/country=" . $this->country;
+    }
 
     public function getCategories(): ?array
     {
-        $endpoint = 'show=categories&key=' . self::API_KEY;
+        $endpoint = '?show=categories&key=' . self::API_KEY;
         $data = $this->callAPI($endpoint);
 
         $array = [];
@@ -27,7 +62,7 @@ class WebcamApi
 
     public function getCountries(): ?array
     {
-        $endPoint = 'show=countries&key=' . self::API_KEY;
+        $endPoint = '?show=countries&key=' . self::API_KEY;
         $data = $this->callAPI($endPoint);
         $array = [];
 
@@ -38,23 +73,19 @@ class WebcamApi
         return $array;
     }
 
-//    public function getWebcam(string $country, string $show): ?array
-//    {
-//        $endPoint = 'show=categories&key=' . self::API_KEY;
-//
-//        $data = $this->callAPI($endPoint);
-//
-//        $params = ['categories' => $data['result']['categories'], 'countries' => $data['result']['countries']];
-//
-//
-//        var_dump($params);
-//
-//        return $data['result']['webcams'];
-//    }
+    public function setUrl(): ?string
+    {
+        $endpoint = self::BASE_URL;
+        $endpoint .= (!empty($this->getCountry())) ? $this->getCountry() : '';
+        $endpoint .= (!empty($this->getCategory())) ? $this->getCategory() : '';
+        $endpoint .= (!empty($this->getOrderBy())) ? $this->getOrderBy() : '';
+        $endpoint .= (!empty($this->getLimit())) ? $this->getLimit() : '';
+        $endpoint .= $this->showCam . self::API_KEY;
+        return $endpoint;
+    }
 
-
-    public
-    function callAPI( string $endpoint): ?array
+/*
+    public function callAPI( string $endpoint): ?array
     {
         $curl = new \Curl\Curl();
         $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
@@ -70,5 +101,5 @@ class WebcamApi
             echo "<p style='color:green;font-weight: bold;'>request successful : " . $curl->http_status_code . " at ".$endpoint."</p>";
         }
         return json_decode($curl->response, 1);
-    }
+    }*/
 }
