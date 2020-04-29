@@ -9,6 +9,8 @@
         }
     },
     "require": {
-
+        "curl/curl": "^2.3",
+        "ext-curl": "*",
+        "ext-json": "*"
     }
 }
