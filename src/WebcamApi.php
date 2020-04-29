@@ -9,42 +9,13 @@ class WebcamApi
     const API_KEY = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
     private string $country;
     private string $category;
-    private string $orderBy = 'popularity';
-    private int $limit = 50;
     private string $showCam = '?show=webcams:player,location&key=';
 
-    public function __construct(){  }
 
-    public function getLimit()
-    {
-        return '/limit=' . $this->limit;
-    }
-
-    public function getOrderBy()
-    {
-        return "/orderby=" . $this->orderBy;
-    }
-
-    public function setCategory($category)
-    {
-        $this->category = $category;
-    }
-
-    public function getCategory(): ?string
-    {
-        return "/category=" . $this->category;
-    }
-
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    public function getCountry(): ?string
-    {
-        return "/country=" . $this->country;
-    }
-
+    /**
+     * getCategories
+     * @return array|null
+     */
     public function getCategories(): ?array
     {
         $endpoint = '?show=categories&key=' . self::API_KEY;
@@ -60,6 +31,10 @@ class WebcamApi
     }
 
 
+    /**
+     * getCountries
+     * @return array|null
+     */
     public function getCountries(): ?array
     {
         $endPoint = '?show=countries&key=' . self::API_KEY;
@@ -73,19 +48,53 @@ class WebcamApi
         return $array;
     }
 
-    public function setUrl(): ?string
+    /**
+     * sexyData
+     * @param array $array
+     * @return mixed
+     */
+    public function sexyData(array $array)
     {
-        $endpoint = self::BASE_URL;
-        $endpoint .= (!empty($this->getCountry())) ? $this->getCountry() : '';
-        $endpoint .= (!empty($this->getCategory())) ? $this->getCategory() : '';
-        $endpoint .= (!empty($this->getOrderBy())) ? $this->getOrderBy() : '';
-        $endpoint .= (!empty($this->getLimit())) ? $this->getLimit() : '';
-        $endpoint .= $this->showCam . self::API_KEY;
-        return $endpoint;
+        $endpoint = '';
+        foreach ($array as $paramKey => $paramValue) {
+            switch ($paramKey) {
+                case 'country':
+                    $endpoint .= '/country=' . $paramValue;
+                    break;
+                case 'category':
+                    $endpoint .= '/category=' . $paramValue;
+                    break;
+                case 'order_by':
+                    $endpoint .= '/orderby=' . $paramValue;
+                    break;
+                case 'limit':
+                    $endpoint .= '/limit=' . $paramValue;
+                    break;
+            }
+        }
+
+        // Default value
+        if(strpos($endpoint, '/limit=') === false) {
+            $endpoint .= '/limit=50';
+        }
+
+        // Default value
+        if(strpos($endpoint, '/orderby=') === false) {
+            $endpoint .= '/orderby=popularity';
+        }
+
+        if (!empty($endpoint)) {
+            $final = $this->callAPI($endpoint . $this->showCam . self::API_KEY);
+            return $final['result']['webcams'];
+        }
     }
 
-
-    public function callAPI( string $endpoint): ?array
+    /**
+     * callAPI
+     * @param string $endpoint
+     * @return array
+     */
+    public function callAPI(string $endpoint): array
     {
         $curl = new \Curl\Curl();
         $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
@@ -93,12 +102,10 @@ class WebcamApi
         $curl->setOpt(CURLOPT_TIMEOUT, 10);
         $curl->get(self::BASE_URL . $endpoint);
 
-        if ($curl->error)
+        if (!empty($curl->error))
         {
-            echo "<p style='color:red;font-weight: bold'>request error : " . $curl->http_status_code . ' ' . $curl->error_message . " at ".$endpoint."</p>";
-        } else
-        {
-            echo "<p style='color:green;font-weight: bold;'>request successful : " . $curl->http_status_code . " at ".$endpoint."</p>";
+            echo "<p style='color:#ff0000;font-weight: bold'>request error : " . $curl->http_status_code . ' ' .
+                $curl->error_message . " at ".$endpoint."</p>";
         }
         return json_decode($curl->response, 1);
     }
