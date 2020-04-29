@@ -9,5 +9,4 @@
  */
 
 // Autoload
-phpinfo();
 require '../vendor/autoload.php';
