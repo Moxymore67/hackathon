@@ -28,12 +28,13 @@ class MiniGame extends WebcamApi
     }
 
     /**
-     *
+     * @param string $category
+     * @param string $country
      */
-    public function setData()
+    public function setData(string $category, string $country)
     {
-        $this->data['category'] = $_POST['category-choice'];
-        $this->data['country'] = $this->getRandomCountry();
+        $this->data['category'] = $category;
+        $this->data['country'] = $country;
     }
 
     /**

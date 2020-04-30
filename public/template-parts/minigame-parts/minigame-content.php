@@ -1,14 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <h1>Guess the country !</h1>
+            <h2>Guess the country !</h2>
+            <h3 class="bg-warning"><?= $_SESSION['message']; ?></h3>
             <div>
                 <iframe width="100%"
                         height="400px"
                         src="<?= $_SESSION['player']; ?>"
                 >
-
                 </iframe>
+                <p><em>Continent : <?= $_SESSION['continent']; ?></em></p>
             </div>
             <div>
                 <form action="./../minigame.php" method="post">
@@ -27,7 +28,7 @@
                 </form>
             </div>
             <div>
-                <a href="minigame.php" class="btn btn-warning">Try another one</a>
+                <a href="minigame.php" class="btn btn-warning">Change Landscape</a>
             </div>
         </div>
     </div>

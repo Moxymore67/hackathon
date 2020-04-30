@@ -2,16 +2,25 @@
 
 session_start();
 
+if (isset($_SESSION['countries']) && isset($_SESSION['categories'])) {
+    session_unset();
+}
+
 $webcam = new \App\WebcamApi();
 $countries = $webcam->getCountries();
 $categories = $webcam->getCategories();
 asort($countries);
 
+$miniGame = new \App\MiniGame();
 $data = [];
 if (isset($_POST['category-choice'])) {
+    $_SESSION['message'] = '';
     $_SESSION['player'] = '';
-    $miniGame = new \App\MiniGame();
-    $miniGame->setData();
+
+    $_SESSION['category'] = $_POST['category-choice'];
+    $_SESSION['country'] = $miniGame->getRandomCountry();
+
+    $miniGame->setData($_SESSION['category'], $_SESSION['country']);
     $data = $miniGame->getData();
 
     if (!empty($data['country'])) {
@@ -19,50 +28,38 @@ if (isset($_POST['category-choice'])) {
         if (!empty($final)) {
             $randWebcam = array_rand($final);
             $_SESSION['player'] = $final[$randWebcam]['player']['month']['embed'];
+            $_SESSION['continent'] = $final[$randWebcam]['location']['continent'];
         }
     }
-
-    var_dump($data);
 }
+elseif (isset($_POST['guess']) && $_POST['guess'] == "none") {
+    $_SESSION['message'] = '';
+    $_SESSION['country'] = $miniGame->getRandomCountry();
 
-/*
-// MINI GAME LOGIC
-// On page first visit or reload
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    // new MiniGame object
-    $miniGame = new \App\MiniGame();
+    $miniGame->setData($_SESSION['category'], $_SESSION['country']);
+    $data = $miniGame->getData();
 
-    // pick a random country
-    $randCountry = $miniGame->getRandomCountry();
-
-    $data['country'] = $randCountry;
-    $final = $miniGame->sexyData($data);
-
-    // Storing it into SESSION
-    $_SESSION['country'] = $randCountry;
-// On guessing a country
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // checking not a blank guess
-    if ($_POST['guess'] == 'none') {
-        // If so, redirect
-        header('location: minigame.php');
-    // If valid guess
+    if (!empty($data['country'])) {
+        $final = $miniGame->sexyData($data);
+        if (!empty($final)) {
+            $randWebcam = array_rand($final);
+            $_SESSION['player'] = $final[$randWebcam]['player']['month']['embed'];
+            $_SESSION['continent'] = $final[$randWebcam]['location']['continent'];
+        }
+    }
+}
+elseif (isset($_POST['guess'])) {
+    $message = '';
+    if ($_POST['guess'] == $_SESSION['country']){
+        $message = "You're the best !";
     } else {
-        // Storing guess into SESSION
-        $_SESSION['guess'] = $_POST['guess'];
-        // Compare the results
-        if ($_SESSION['country'] == $_SESSION['guess']) {
-            $message = "You're the best !";
-        } else {
-            $message = 'Nope ...';
-        }
-        var_dump($message);
+        $message = "Nope ...";
     }
+    $_SESSION['message'] = $message;
 }
-*/
 
 include './template-parts/header.php';
-if (isset($_POST['category-choice'])) {
+if (isset($_POST['category-choice']) || isset($_POST['guess'])) {
     include './template-parts/minigame-parts/minigame-content.php';
 } else {
     include './template-parts/minigame-parts/minigame-start.php';
