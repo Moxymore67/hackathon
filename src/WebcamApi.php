@@ -9,7 +9,6 @@ class WebcamApi
     const API_KEY = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
     private string $showCam = '?show=webcams:player,location&key=';
 
-
     public function __construct()
     {
 

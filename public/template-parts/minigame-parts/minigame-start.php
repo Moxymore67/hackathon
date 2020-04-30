@@ -13,7 +13,7 @@
                         <option>-- Select Environment --</option>
                         <?php
                         foreach ($categories as $key => $category) { ?>
-                            <option><?= $category; ?></option>
+                            <option><?= $key; ?></option>
                             <?php
                         }
                         ?>

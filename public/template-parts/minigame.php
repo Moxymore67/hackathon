@@ -8,18 +8,21 @@ $categories = $webcam->getCategories();
 asort($countries);
 
 $data = [];
-
 if (isset($_POST['category-choice'])) {
+    $_SESSION['player'] = '';
     $miniGame = new \App\MiniGame();
-    $category = $_POST['category-choice'];
-    $randCountry = $miniGame->getRandomCountry();
+    $miniGame->setData();
+    $data = $miniGame->getData();
 
-    $data['category'] = $category;
-    $data['country'] = $randCountry;
+    if (!empty($data['country'])) {
+        $final = $miniGame->sexyData($data);
+        if (!empty($final)) {
+            $randWebcam = array_rand($final);
+            $_SESSION['player'] = $final[$randWebcam]['player']['month']['embed'];
+        }
+    }
 
-    $final = $miniGame->sexyData($data);
-
-    var_dump($data, $final);
+    var_dump($data);
 }
 
 /*

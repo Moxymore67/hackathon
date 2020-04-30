@@ -3,6 +3,14 @@
         <div class="col-6">
             <h1>Guess the country !</h1>
             <div>
+                <iframe width="100%"
+                        height="400px"
+                        src="<?= $_SESSION['player']; ?>"
+                >
+
+                </iframe>
+            </div>
+            <div>
                 <form action="./../minigame.php" method="post">
                     <div class="form-group">
                         <select name="guess" id="guess" class="form-control">
