@@ -12,17 +12,17 @@
 
                 </div>
             </div>
-            <div class="col-xl-3 col-md-6 col-lg-3">
+            <div class="col-12 text-center">
                 <div class="footer_widget">
                     <h3 class="footer_title">
-                        Services
+                        The team behind this project
                     </h3>
-                    <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">3D Modeling</a></li>
-                        <li><a href="#">Architectural Design</a></li>
-                    </ul>
-
+                    <div class="row pb-4 pt-2">
+                        <li class="col-6"><a href="#">Vincent</a></li>
+                        <li class="col-6"><a href="#">Virgile</a></li>
+                        <li class="col-6"><a href="#">Pierre</a></li>
+                        <li class="col-6"><a href="#">Alex</a></li>
+                    </div>
                 </div>
             </div>
         </div>
