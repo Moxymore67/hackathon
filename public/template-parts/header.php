@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr">
-<head>
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../assets/style.css" rel="stylesheet" type="text/css" media="screen"/>
@@ -9,7 +9,7 @@
           crossorigin="anonymous">
     <link rel="icon" href="../assets/favicon.png">
 </head>
-
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
