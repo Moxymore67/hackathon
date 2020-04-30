@@ -11,16 +11,11 @@ $data = $webcam->sexyData(array(
 // Randomize the array
 shuffle($data);
 ?>
-<div class="container-fluid mx-auto"
+<div class="container-fluid mx-auto pt-4"
      style="background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,149,218,0.85) 9.9%, rgba(56,80,114,1) 100.3% );">
 
-    <script>
-        //Using setTimeout to execute a function after 5 seconds.
-        setTimeout(function () {
-            //Redirect with JavaScript
-            window.location.href = '/';
-        }, 100000);
-    </script>
+    <a href="/" class="btn btn-danger px-4 py-2 text-white mx-auto"
+       style="width: 200px;display: block;">Change location</a>
     <div class="row">
         <?php
         $loop = 1;
