@@ -30,6 +30,7 @@
             <div>
                 <a href="minigame.php" class="btn btn-warning">Change Landscape</a>
             </div>
+            <p class="text-light"><?= $_SESSION['country']; ?></p>
         </div>
     </div>
 </div>
