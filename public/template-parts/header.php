@@ -56,7 +56,7 @@
                                 <ul id="navigation">
                                     <li><a class="active" href="index.php">Home</a></li>
                                     <li><a href="travel.php">Choose your destination</a></li>
-                                    <li><a href="mini-game.php">Wanna game ?</a></li>
+                                    <li><a href="minigame.php">Wanna game ?</a></li>
                                 </ul>
                             </nav>
                         </div>
