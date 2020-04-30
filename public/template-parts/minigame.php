@@ -7,24 +7,36 @@ $countries = $webcam->getCountries();
 $categories = $webcam->getCategories();
 asort($countries);
 
+$data = [];
+
+if (isset($_POST['category-choice'])) {
+    $miniGame = new \App\MiniGame();
+    $category = $_POST['category-choice'];
+    $randCountry = $miniGame->getRandomCountry();
+
+    $data['category'] = $category;
+    $data['country'] = $randCountry;
+
+    $final = $miniGame->sexyData($data);
+
+    var_dump($data, $final);
+}
+
+/*
 // MINI GAME LOGIC
 // On page first visit or reload
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // new MiniGame object
     $miniGame = new \App\MiniGame();
 
-    $miniGame->setCategory('beach');
-
     // pick a random country
     $randCountry = $miniGame->getRandomCountry();
 
-    $miniGame->setCountry($randCountry);
-
-    $url = $miniGame->getUrl();
+    $data['country'] = $randCountry;
+    $final = $miniGame->sexyData($data);
 
     // Storing it into SESSION
     $_SESSION['country'] = $randCountry;
-    var_dump($randCountry, $url);
 // On guessing a country
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // checking not a blank guess
@@ -44,7 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         var_dump($message);
     }
 }
+*/
 
 include './template-parts/header.php';
-include './template-parts/minigame-parts/minigame-start.php';
+if (isset($_POST['category-choice'])) {
+    include './template-parts/minigame-parts/minigame-content.php';
+} else {
+    include './template-parts/minigame-parts/minigame-start.php';
+}
 include './template-parts/footer.php';

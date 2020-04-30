@@ -9,7 +9,7 @@
         <div class="col-6">
             <form action="./../minigame.php" method="post">
                 <div class="form-group">
-                    <select class="form-control">
+                    <select name="category-choice" class="form-control">
                         <option>-- Select Environment --</option>
                         <?php
                         foreach ($categories as $key => $category) { ?>
@@ -19,7 +19,7 @@
                         ?>
                     </select>
                 </div>
-                <button type="submit" value="category-sub" class="btn btn-primary">START</button>
+                <button type="submit" value="category-submit" class="btn btn-primary">START</button>
             </form>
         </div>
     </div>
