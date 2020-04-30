@@ -1,18 +1,25 @@
 <?php
 session_start();
 $webcam = new App\WebcamApi();
+
 if ((!isset($_SESSION['countries'])) && (!isset($_SESSION['categories'])))
 {
     echo "<body onload='getAllParameters();'>";
+}
+
+if ((!isset($_SESSION['webcams'])))
+{
+    echo "<body onload='sexyData();'>";
 } else
 {
     echo "<body>";
 }
 
+
 if ((!empty($_POST['countries'])) && !empty(($_POST['categories'])))
 {
     $decodeCountries = json_decode($_POST['countries'], 1);
-    $decodeCat = json_decode($_POST['categories'], 1);
+    $decodeCategories = json_decode($_POST['categories'], 1);
 
     asort($decodeCountries);
     asort($decodeCat);
@@ -20,68 +27,38 @@ if ((!empty($_POST['countries'])) && !empty(($_POST['categories'])))
     if ((!isset($_SESSION['countries'])) && (!isset($_SESSION['categories'])))
     {
         $_SESSION['countries'] = $decodeCountries;
-        $_SESSION['categories'] = $decodeCat;
+        $_SESSION['categories'] = $decodeCategories;
     }
 }
 
-//var_dump($decodeCountries);
-//var_dump($decodeCat);
-if ((isset($_SESSION['countries'])) && (isset($_SESSION['categories'])))
+if (!empty($_POST['webcams']))
 {
-    ?>
-    <form method="post">
-        <div class="form-group ">
-            <label for="exampleFormControlSelect2">Select a category
-                <select name="category" class="form-control" id="">
-                    <option>Select your category</option>
-                    <?php foreach ($_SESSION['categories'] as $key => $val) { ?>
+    $decodedWebcams = json_decode($_POST['webcams'], 1);
 
-                        <option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
-                    <?php } ?>
-                </select></label>
-        </div>
-        <div class="form-group ">
-            <label for="">Select a country
-                <select name="key" class="form-control" id="">
-                    <option>Select your country</option>
-                    <?php foreach ($_SESSION['countries'] as $key => $val) { ?>
-                        <option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
-                    <?php } ?>
-                </select> </label>
-        </div>
-        <input type="submit" value="Send">
-    </form>
-    <?php
-
-    if (!empty($_POST['category']) && (!empty($_POST['key'])))
+    if (!isset($_SESSION['webcams']))
     {
-        $data = $webcam->sexyData(
-            array(
-                'category' => $_POST['category'],
-                'country' => $_POST['key'],
-                'limit' => '4',
-                'order_by' => 'popularity',
-            )
-        );
+        $_SESSION['webcams'] = $decodedWebcams;
     }
-    if ($data == NULL)
-    {
+}
 
-        echo "<p style='color:red;font-weight: bolder;font-size: 1.25rem;'>Votre recherche ne peut aboutir</p>";
-    } else
-    {
+if (isset($_SESSION['webcams']))
+{
 
-//        var_dump($data[0]);
+    $data = $_SESSION['webcams'];
 
-        ?>
-        <div class="container-fluid mx-auto">
-            <div class="row">
-                <?php
-                foreach ($data as $key => $value)
-                {
-                    ?>
-
-                    <div class="col-6">
+//Randomize the array
+    shuffle($data);
+    ?>
+    <div class="container-fluid mx-auto">
+        <button class="btn btn-primary" onclick="refresh()">Rafraîchir la page</button>
+        <div class="row">
+            <?php
+            $loop = 1;
+            foreach ($data as $key => $value)
+            {
+                if ($loop <= 6)
+                { ?>
+                    <div class="col-6 card">
                         <h2 style='text-align: center;'> <?= $value['location']['city'] . ', ' . $value['location']['country'] ?>
                             <?php if (!empty($value['location']['wikipedia']))
                             {
@@ -96,22 +73,11 @@ if ((isset($_SESSION['countries'])) && (isset($_SESSION['categories'])))
                             </iframe>
                     </div>
 
-                <?php } ?>
-            </div>
-        </div>
-        <?php
-    }
-}
-?>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            gjoifdsgiodfjig
-        </div>
-        <div class="col-6">
-            gfjldfjgdf
+                    <?php
+                    $loop++;
+                }
+            } ?>
         </div>
     </div>
-</div>
-</body>
-</html>
+    <?php
+}

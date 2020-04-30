@@ -1,14 +1,37 @@
-<footer class="bg-dark">
-    <div class="container-fluid">
+<!-- footer start -->
+<footer class="footer">
+    <div class="container">
         <div class="row">
-            <div class="col-12">hi</div>
+            <div class="col-xl-4 col-md-6 col-lg-4">
+                <div class="footer_widget">
+                    <div class="logo_footer">
+                        <a href="index.html">
+                            <img src="../assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-lg-3">
+                <div class="footer_widget">
+                    <h3 class="footer_title">
+                        Services
+                    </h3>
+                    <ul>
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">3D Modeling</a></li>
+                        <li><a href="#">Architectural Design</a></li>
+                    </ul>
+
+                </div>
+            </div>
         </div>
     </div>
 </footer>
+<!--/ footer end  -->
 
-<!--<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
-<!--        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"-->
-<!--        crossorigin="anonymous"></script>-->
+
+<!-- JS here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -20,6 +43,33 @@
 <script src="../assets/script.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../assets/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="../assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="../assets/js/popper.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/isotope.pkgd.min.js"></script>
+<script src="../assets/js/ajax-form.js"></script>
+<script src="../assets/js/waypoints.min.js"></script>
+<script src="../assets/js/jquery.counterup.min.js"></script>
+<script src="../assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="../assets/js/scrollIt.js"></script>
+<script src="../assets/js/jquery.scrollUp.min.js"></script>
+<script src="../assets/js/wow.min.js"></script>
+<script src="../assets/js/nice-select.min.js"></script>
+<script src="../assets/js/jquery.slicknav.min.js"></script>
+<script src="../assets/js/jquery.magnific-popup.min.js"></script>
+<script src="../assets/js/plugins.js"></script>
+<script src="../assets/js/gijgo.min.js"></script>
 
+<!--contact js-->
+<script src="../assets/js/contact.js"></script>
+<script src="../assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="../assets/js/jquery.form.js"></script>
+<script src="../assets/js/jquery.validate.min.js"></script>
+<script src="../assets/js/mail-script.js"></script>
+
+<script src="../assets/js/main.js"></script>
 </body>
+
 </html>
