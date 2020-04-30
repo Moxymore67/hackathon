@@ -1,5 +1,5 @@
 <?php
-$webcam = new App\WebcamApi();
+
 $countries = $webcam->getCountries();
 
 $categories = $webcam->getCategories();
