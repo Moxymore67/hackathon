@@ -1,5 +1,3 @@
-
-
 function getCountries() {
     let token = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
     const url = `https://api.windy.com/api/webcams/v2/list?show=countries;categories&key=CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv`;

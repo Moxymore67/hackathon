@@ -7,15 +7,13 @@ class WebcamApi
 {
     const BASE_URL = 'https://api.windy.com/api/webcams/v2/list';
     const API_KEY = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
-    private string $country;
-    private string $category;
     private string $showCam = '?show=webcams:player,location&key=';
+
 
     public function __construct()
     {
 
     }
-
 
     /**
      * getCategories
@@ -26,16 +24,13 @@ class WebcamApi
     {
         $endpoint = '?show=categories&key=' . self::API_KEY;
         $data = $this->callAPI($endpoint);
-
         $array = [];
         foreach ($data['result']['categories'] as $key => $value)
         {
             $array[$value['id']] = $value['name'];
         }
-
         return $array;
     }
-
 
     /**
      * getCountries
@@ -46,7 +41,6 @@ class WebcamApi
         $endPoint = '?show=countries&key=' . self::API_KEY;
         $data = $this->callAPI($endPoint);
         $array = [];
-
         foreach ($data['result']['countries'] as $key => $value)
         {
             $array[$value['id']] = $value['name'];
@@ -80,13 +74,11 @@ class WebcamApi
                     break;
             }
         }
-
         // Default value
         if (strpos($endpoint, '/limit=') === false)
         {
             $endpoint .= '/limit=50';
         }
-
         // Default value
         if (strpos($endpoint, '/orderby=') === false)
         {
@@ -112,7 +104,6 @@ class WebcamApi
         $curl->setOpt(CURLOPT_SSL_VERIFYPEER, false);
         $curl->setOpt(CURLOPT_TIMEOUT, 10);
         $curl->get(self::BASE_URL . $endpoint);
-
         if (!empty($curl->error))
         {
             echo "<p style='color:#ff0000;font-weight: bold'>request error : " . $curl->http_status_code . ' ' .

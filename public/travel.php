@@ -10,6 +10,5 @@
 
 require_once '../vendor/autoload.php';
 
-require_once 'template-parts/home.php';
+require_once './template-parts/travel.php';
 
-require_once 'template-parts/travel-parts/travel-form.php';
