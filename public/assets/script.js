@@ -1,4 +1,4 @@
-function getCountries() {
+function getAllParameters() {
     let token = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
     const url = `https://api.windy.com/api/webcams/v2/list?show=countries;categories&key=CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv`;
     axios.get(url).then(function (response) {
@@ -16,21 +16,6 @@ function getCountries() {
 
 }
 
-
-function getCategories() {
-    let token = 'CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv';
-    const url = `https://api.windy.com/api/webcams/v2/list?show=categories&key=CSueTiJgLo8WgS54Jc8c5xZX6QX5I8jv`;
-    axios.get(url).then(function (response) {
-        return response.data;
-    }).then(function (categories) {
-        //console.log('data decoded from JSON:', countries);
-
-        var json = JSON.stringify(categories.result);
-
-        return json;
-        //post('/template-parts/index-parts/index-javascript.php', {countries: json});
-    });
-}
 
 /**
  * sends a request to the specified url from a form. this will change the window location.

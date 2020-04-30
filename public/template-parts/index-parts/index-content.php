@@ -3,7 +3,7 @@ session_start();
 $webcam = new App\WebcamApi();
 if ((!isset($_SESSION['countries'])) && (!isset($_SESSION['categories'])))
 {
-    echo "<body onload='getCountries();'>";
+    echo "<body onload='getAllParameters();'>";
 } else
 {
     echo "<body>";
